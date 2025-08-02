@@ -4,14 +4,16 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtCore import Qt
 from src.main_window.main_window_helpers import get_boot_config_files, get_script_files
+from src.config import ICON_DIRECTORY
+import os
 
 def create_icon_button(icon_name: str, tooltip: str, callback=None) -> QToolButton:
     button = QToolButton()
     icon = QIcon.fromTheme(icon_name)
     if icon.isNull():
         # Try loading from local resources/icons folder
-        icon_path = f"resources/icons/{icon_name}.png"
-        icon = QIcon(icon_path)
+        icon_path = os.path.join(ICON_DIRECTORY, f"{icon_name}.png")
+        icon = QIcon(icon_path) if os.path.exists(icon_path) else QIcon.fromTheme(icon_name)
     button.setIcon(icon)
     button.setToolTip(tooltip)
     button.setCursor(Qt.CursorShape.PointingHandCursor)

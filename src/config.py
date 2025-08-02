@@ -29,3 +29,4 @@ ASHITA_ADDON_CONFIG_DIR = os.path.join(ASHITA_CONFIG_DIR, "addons")
 PROFILE_NAME_DEFAULT = "MyProfile.ini"
 
 REPOS_DIR = os.path.join(os.path.dirname(__file__), "Repos")
+ICON_DIRECTORY = os.path.join(PROJECT_ROOT, "resources", "icons")
