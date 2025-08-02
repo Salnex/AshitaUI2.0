@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Qt UI/Designer files (if generated)
+*.pyuic
+*.qrc
+
+# VSCode settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Misc
+*.swp
+*.swo
+
+# Ashita
+Ashita-v4beta-main/
+
+src/downloads/
