@@ -7,7 +7,12 @@ from src.main_window.main_window_helpers import get_boot_config_files, get_scrip
 
 def create_icon_button(icon_name: str, tooltip: str, callback=None) -> QToolButton:
     button = QToolButton()
-    button.setIcon(QIcon.fromTheme(icon_name))
+    icon = QIcon.fromTheme(icon_name)
+    if icon.isNull():
+        # Try loading from local resources/icons folder
+        icon_path = f"resources/icons/{icon_name}.png"
+        icon = QIcon(icon_path)
+    button.setIcon(icon)
     button.setToolTip(tooltip)
     button.setCursor(Qt.CursorShape.PointingHandCursor)
     button.setStyleSheet("""
@@ -32,7 +37,7 @@ def create_main_layout(parent):
     dropdown = QComboBox()
     dropdown.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
     dropdown.addItems(get_boot_config_files())
-    modify_button = create_icon_button("gtk-preferences", "Modify Boot Config")
+    modify_button = create_icon_button("gtk-edit", "Modify Boot Config")
     new_button = create_icon_button("gtk-add", "New Boot Config")
     dropdown_hori_layout.addWidget(dropdown)
     dropdown_hori_layout.addWidget(modify_button, alignment=Qt.AlignmentFlag.AlignRight)
@@ -46,7 +51,7 @@ def create_main_layout(parent):
     script_dropdown = QComboBox()
     script_dropdown.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
     script_dropdown.addItems(get_script_files())
-    script_modify_button = create_icon_button("gtk-preferences", "Modify Startup Script")
+    script_modify_button = create_icon_button("gtk-edit", "Modify Startup Script")
     script_new_button = create_icon_button("gtk-add", "New Startup Script")
     script_dropdown_layout.addWidget(script_dropdown)
     script_dropdown_layout.addWidget(script_modify_button, alignment=Qt.AlignmentFlag.AlignRight)
