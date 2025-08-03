@@ -12,7 +12,7 @@ def create_icon_button(icon_name: str, tooltip: str, callback=None) -> QToolButt
     icon = QIcon.fromTheme(icon_name)
     if icon.isNull():
         # Try loading from local resources/icons folder
-        icon_path = os.path.join(ICON_DIRECTORY, f"{icon_name}.png")
+        icon_path = os.path.join(ICON_DIRECTORY, f"{icon_name}.svg")
         icon = QIcon(icon_path) if os.path.exists(icon_path) else QIcon.fromTheme(icon_name)
     button.setIcon(icon)
     button.setToolTip(tooltip)
